@@ -12,15 +12,15 @@
   const CFG = {
     mild: {
       key: 'mild', name: '순한맛', emoji: '🍯',
-      teachMin: 3.0, teachMax: 4.4, suspect: 1.1, look: 1.3,
-      sway: 16, swaySpeed: 1.5, hide: 60, duckHide: 96,
-      snacks: 15, time: 50, chewK: 0.85
+      teachMin: 3.2, teachMax: 4.6, suspect: 1.15, look: 1.25,
+      sway: 16, swaySpeed: 1.4, hide: 30, duckHide: 70,
+      snacks: 15, time: 50, chewK: 0.8
     },
     hot: {
       key: 'hot', name: '원작 매운맛', emoji: '🌶',
-      teachMin: 1.9, teachMax: 2.9, suspect: 0.7, look: 1.7,
-      sway: 30, swaySpeed: 2.1, hide: 44, duckHide: 82,
-      snacks: 15, time: 50, chewK: 1.0
+      teachMin: 2.4, teachMax: 3.4, suspect: 0.8, look: 1.55,
+      sway: 34, swaySpeed: 2.0, hide: 28, duckHide: 64,
+      snacks: 15, time: 50, chewK: 0.72
     }
   };
 
@@ -129,7 +129,7 @@
     stage: $('#scene')
   };
 
-  const ARC_LEN = 2 * Math.PI * 94;
+  const ARC_LEN = 2 * Math.PI * 81;
 
   /* ============================ 상태 ============================ */
   let G = null;
@@ -343,7 +343,7 @@
     const suspect = G.tState === 'suspect';
     el.tFront.setAttribute('opacity', looking ? '1' : '0');
     el.tBack.setAttribute('opacity', looking ? '0' : '1');
-    el.cone.setAttribute('opacity', looking ? String(0.68 + Math.sin(G.t * 26) * 0.1) : '0');
+    el.cone.setAttribute('opacity', looking ? String(0.86 + Math.sin(G.t * 26) * 0.08) : '0');
     el.alert.setAttribute('opacity', (suspect || G.alertT > 0) && !looking ? String(Math.min(1, (G.alertT || 0) * 1.6 + 0.5)) : (looking ? '1' : '0'));
 
     // 말풍선
@@ -401,8 +401,7 @@
       el.mouthChip.className = 'chip chip-ok';
     }
 
-    el.btnEat.disabled = G.ducking || G.remaining <= 0;
-    if (G.ducking) el.btnEat.classList.add('disabled'); else el.btnEat.classList.remove('disabled');
+    el.btnEat.classList.toggle('disabled', G.ducking || G.remaining <= 0);
 
     // 캡션 자동 순환
     if (G.phase === 'play' && !paused) {
@@ -627,16 +626,17 @@
     <g transform="translate(160,118)">
       <!-- chair held overhead -->
       <g>
-        <rect x="-24" y="-78" width="48" height="9" rx="4" fill="#B5793C" stroke="#7E4E1C" stroke-width="2.5"/>
-        <rect x="-26" y="-106" width="52" height="9" rx="4" fill="#C4864A" stroke="#7E4E1C" stroke-width="2.5"/>
-        <rect x="-24" y="-100" width="6" height="24" fill="#A96F35"/>
-        <rect x="18" y="-100" width="6" height="24" fill="#A96F35"/>
-        <rect x="-22" y="-70" width="6" height="30" fill="#A96F35"/>
-        <rect x="16" y="-70" width="6" height="30" fill="#A96F35"/>
+        <rect x="-27" y="-132" width="54" height="9" rx="4" fill="#C4864A" stroke="#7E4E1C" stroke-width="2.5"/>
+        <rect x="-27" y="-126" width="6" height="30" fill="#A96F35"/>
+        <rect x="21" y="-126" width="6" height="30" fill="#A96F35"/>
+        <rect x="-30" y="-100" width="60" height="10" rx="4" fill="#B5793C" stroke="#7E4E1C" stroke-width="2.5"/>
+        <rect x="-26" y="-92" width="6" height="24" fill="#A96F35"/>
+        <rect x="20" y="-92" width="6" height="24" fill="#A96F35"/>
+        <rect x="-30" y="-58" width="60" height="5" rx="2" fill="#8A5A28" opacity=".25"/>
       </g>
       <!-- arms -->
-      <path d="M-16,-30 q-16,-14 -20,-40" stroke="#FFDCC0" stroke-width="9" fill="none" stroke-linecap="round"/>
-      <path d="M16,-30 q16,-14 20,-40" stroke="#FFDCC0" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M-18,-30 q-18,-16 -12,-40" stroke="#FFDCC0" stroke-width="9" fill="none" stroke-linecap="round"/>
+      <path d="M18,-30 q18,-16 12,-40" stroke="#FFDCC0" stroke-width="9" fill="none" stroke-linecap="round"/>
       <!-- legs -->
       <rect x="-14" y="28" width="11" height="26" rx="5" fill="#FFDCC0"/>
       <rect x="3" y="28" width="11" height="26" rx="5" fill="#FFDCC0"/>
@@ -662,7 +662,7 @@
       <!-- tear -->
       <path d="M18,-50 q4,7 0,10 q-4,-3 0,-10z" fill="#7FD1F2"/>
       <!-- mouth -->
-      <path d="M-7,-40 q7,7 14,0" stroke="#C4644E" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <path d="M-8,-38 q8,-7 16,0" stroke="#C4644E" stroke-width="2.8" fill="none" stroke-linecap="round"/>
       <ellipse cx="-18" cy="-46" rx="5" ry="3" fill="#FFA8C8" opacity=".7"/>
       <ellipse cx="18" cy="-46" rx="5" ry="3" fill="#FFA8C8" opacity=".7"/>
     </g>
@@ -694,7 +694,8 @@
       <path d="M0,46 q-12,3 -16,10 l16,12 l16,-12 q-4,-7 -16,-10z" fill="#FFFFFF"/>
       <path d="M-6,58 q6,5 12,0 q-2,7 -6,8 q-4,-1 -6,-8z" fill="#FFD34E"/>
       <circle cx="0" cy="4" r="34" fill="#FFDFC4"/>
-      <path d="M-34,2 q2,-34 34,-34 q32,0 34,34 q-18,-16 -34,-12 q-16,-4 -34,12z" fill="#FF8CC4"/>
+      <path d="M-35,4 q0,-36 35,-36 q35,0 35,36 q-10,-20 -35,-16 q-25,-4 -35,16z" fill="#FF8CC4"/>
+      <path d="M-30,-6 q10,-20 30,-20 q20,0 30,20 q-14,-8 -30,-8 q-16,0 -30,8z" fill="#FFB0D8" opacity=".8"/>
       <circle cx="-32" cy="-12" r="14" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2"/>
       <circle cx="32" cy="-12" r="14" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2"/>
       <circle cx="-32" cy="-12" r="7" fill="#FFD3E8"/><circle cx="32" cy="-12" r="7" fill="#FFD3E8"/>
@@ -820,13 +821,15 @@
           <h2>⏸ 잠깐 멈춤</h2>
           <div class="result-desc">선생님도 잠시 쉬는 중</div>
           <div class="btn-row">
-            <button class="btn" id="btnHome2">처음으로</button>
+            <button class="btn" id="btnRestart2">다시 시작</button>
             <button class="btn primary" id="btnResume">계속하기</button>
           </div>
+          <button class="btn" id="btnHome2" style="width:100%;padding:9px">난이도 선택으로</button>
         </div>
       </div>`;
       el.overlay.classList.add('show');
       $('#btnResume').addEventListener('click', () => togglePause(false));
+      $('#btnRestart2').addEventListener('click', () => { paused = false; startGame(G.c.key); });
       $('#btnHome2').addEventListener('click', () => { paused = false; G = null; showIntro(); });
     } else {
       hideOverlay();

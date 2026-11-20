@@ -40,8 +40,8 @@
         </linearGradient>
         <linearGradient id="gCone" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#FFF9C9" stop-opacity=".92"/>
-          <stop offset=".55" stop-color="#FFE466" stop-opacity=".42"/>
-          <stop offset="1" stop-color="#FFD21E" stop-opacity=".06"/>
+          <stop offset=".55" stop-color="#FFE466" stop-opacity=".62"/>
+          <stop offset="1" stop-color="#FFD21E" stop-opacity=".14"/>
         </linearGradient>
         <linearGradient id="gSkin" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#FFE9D4"/><stop offset="1" stop-color="#FBCCA9"/>
@@ -111,10 +111,10 @@
           <ellipse cx="250" cy="180" rx="180" ry="90" fill="#3C8C78" opacity=".18"/>
         </g>
         <g font-family="'Nanum Pen Script','Apple SD Gothic Neo','Malgun Gothic',sans-serif" fill="#E8F3EC" opacity=".92">
-          <text x="128" y="152" font-size="34" font-weight="700" letter-spacing="1">학습목표:</text>
-          <path d="M130,164 q60,8 118,2" stroke="#E8F3EC" stroke-opacity=".6" stroke-width="3" fill="none"/>
-          <text x="470" y="238" font-size="26" font-weight="700">떠든사람:</text>
-          <text x="512" y="284" font-size="30" font-weight="700">슈</text>
+          <text x="112" y="152" font-size="27" font-weight="700" letter-spacing=".5">학습목표:</text>
+          <path d="M114,164 q58,7 112,2" stroke="#E8F3EC" stroke-opacity=".55" stroke-width="3" fill="none"/>
+          <text x="462" y="250" font-size="23" font-weight="700">떠든사람:</text>
+          <text x="506" y="292" font-size="27" font-weight="700">슈</text>
         </g>
         <!-- chalk smudges -->
         <ellipse cx="180" cy="270" rx="46" ry="12" fill="#E8F3EC" opacity=".07"/>
@@ -250,10 +250,11 @@
 
       <!-- ================= TEACHER ================= -->
       <!-- back view -->
-      <g id="teacherBack">
+      <g id="teacherBack" transform="translate(368,300) scale(0.86) translate(-368,-300)">
         <ellipse cx="368" cy="356" rx="98" ry="64" fill="#7FB3D5"/>
         <path d="M292,320 q76,-30 152,0 l0,66 q-76,22 -152,0z" fill="#79ACCE"/>
         <path d="M318,300 q50,24 100,0 q-4,28 -50,32 q-46,-4 -50,-32z" fill="#FFD766"/>
+        <path d="M312,398 q58,-14 116,0 l12,66 q-70,14 -140,0z" fill="#6396BA"/>
         <path d="M318,300 q50,24 100,0 q-3,12 -50,14 q-47,-2 -50,-14z" fill="#F5C13D"/>
         <rect x="350" y="274" width="36" height="26" rx="10" fill="#F7CBA6"/>
         <ellipse cx="368" cy="240" rx="74" ry="66" fill="#8C4A20"/>
@@ -271,43 +272,45 @@
       </g>
 
       <!-- front view (turned around) -->
-      <g id="teacherFront" opacity="0">
+      <g id="teacherFront" opacity="0" transform="translate(368,300) scale(0.86) translate(-368,-300)">
         <ellipse cx="368" cy="356" rx="98" ry="64" fill="#7FB3D5"/>
         <path d="M292,320 q76,-30 152,0 l0,66 q-76,22 -152,0z" fill="#79ACCE"/>
         <path d="M318,300 q50,26 100,0 q-2,30 -50,34 q-48,-4 -50,-34z" fill="#FFD766"/>
-        <ellipse cx="368" cy="236" rx="78" ry="72" fill="#8C4A20"/>
-        <ellipse cx="368" cy="248" rx="62" ry="58" fill="url(#gSkin)"/>
+        <path d="M312,398 q58,-14 116,0 l12,66 q-70,14 -140,0z" fill="#6396BA"/>
+        <ellipse cx="368" cy="240" rx="76" ry="70" fill="#8C4A20"/>
+        <ellipse cx="368" cy="254" rx="60" ry="56" fill="url(#gSkin)"/>
         <!-- fringe -->
-        <path d="M304,238 q6,-48 64,-48 q58,0 64,48 q-30,-16 -64,-10 q-34,-6 -64,10z" fill="#A05A2C"/>
-        <path d="M306,232 q10,-30 30,-38 q-6,22 4,34z" fill="#8C4A20"/>
-        <path d="M430,232 q-10,-30 -30,-38 q6,22 -4,34z" fill="#8C4A20"/>
-        <circle cx="368" cy="164" r="35" fill="#8C4A20"/>
-        <circle cx="368" cy="164" r="29" fill="#A05A2C"/>
-        <circle cx="368" cy="194" r="8" fill="#E0577C"/>
-        <!-- eyes -->
-        <g fill="#4A2B12">
-          <ellipse cx="340" cy="250" rx="6" ry="8"/>
-          <ellipse cx="396" cy="250" rx="6" ry="8"/>
-        </g>
+        <path d="M308,246 q2,-46 60,-46 q58,0 60,46 q-14,-14 -34,-18 q-26,-6 -52,0 q-20,4 -34,18z" fill="#A05A2C"/>
+        <path d="M310,240 q8,-28 28,-36 q-8,22 2,32z" fill="#8C4A20"/>
+        <path d="M426,240 q-8,-28 -28,-36 q8,22 -2,32z" fill="#8C4A20"/>
+        <circle cx="368" cy="168" r="35" fill="#8C4A20"/>
+        <circle cx="368" cy="168" r="29" fill="#A05A2C"/>
+        <path d="M354,152 q24,-4 30,16" stroke="#7C3F19" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="368" cy="197" r="8" fill="#E0577C"/>
         <!-- angry brows -->
-        <g stroke="#7C3F19" stroke-width="4" stroke-linecap="round">
-          <line x1="326" y1="234" x2="352" y2="240"/>
-          <line x1="410" y1="234" x2="384" y2="240"/>
+        <g stroke="#7C3F19" stroke-width="4.5" stroke-linecap="round">
+          <line x1="322" y1="238" x2="350" y2="246"/>
+          <line x1="414" y1="238" x2="386" y2="246"/>
         </g>
         <!-- heart glasses -->
-        <g fill="#FF7FAE" fill-opacity=".82" stroke="#E85D94" stroke-width="4">
-          <path d="M340,236 c-14,-14 -34,-4 -24,14 c6,12 24,22 24,22 c0,0 18,-10 24,-22 c10,-18 -10,-28 -24,-14z"/>
-          <path d="M396,236 c-14,-14 -34,-4 -24,14 c6,12 24,22 24,22 c0,0 18,-10 24,-22 c10,-18 -10,-28 -24,-14z"/>
+        <g fill="#FF5C9E" fill-opacity=".92" stroke="#D93C7E" stroke-width="4.5">
+          <path d="M339,240 c-15,-15 -37,-4 -26,15 c7,13 26,24 26,24 c0,0 19,-11 26,-24 c11,-19 -11,-30 -26,-15z"/>
+          <path d="M397,240 c-15,-15 -37,-4 -26,15 c7,13 26,24 26,24 c0,0 19,-11 26,-24 c11,-19 -11,-30 -26,-15z"/>
         </g>
-        <g stroke="#E85D94" stroke-width="4" fill="none">
-          <line x1="362" y1="248" x2="374" y2="248"/>
+        <!-- eyes through the glasses -->
+        <g>
+          <ellipse cx="339" cy="254" rx="11" ry="12" fill="#FFFFFF"/>
+          <ellipse cx="340" cy="255" rx="6" ry="7" fill="#3E2A18"/>
+          <circle cx="338" cy="252" r="2.4" fill="#FFFFFF"/>
+          <ellipse cx="397" cy="254" rx="11" ry="12" fill="#FFFFFF"/>
+          <ellipse cx="396" cy="255" rx="6" ry="7" fill="#3E2A18"/>
+          <circle cx="394" cy="252" r="2.4" fill="#FFFFFF"/>
         </g>
-        <g fill="#FFFFFF" opacity=".75">
-          <ellipse cx="330" cy="240" rx="6" ry="4" transform="rotate(-25 330 240)"/>
-          <ellipse cx="386" cy="240" rx="6" ry="4" transform="rotate(-25 386 240)"/>
+        <g stroke="#D93C7E" stroke-width="4.5" fill="none">
+          <line x1="361" y1="252" x2="375" y2="252"/>
         </g>
         <!-- mouth -->
-        <path d="M356,286 q12,-9 24,0 q-12,12 -24,0z" fill="#D2735C"/>
+        <path d="M358,292 q10,-8 20,0 q-10,10 -20,0z" fill="#C2604A"/>
         <!-- earrings -->
         <circle cx="300" cy="268" r="7" fill="#4FC3E8"/>
         <circle cx="436" cy="268" r="7" fill="#4FC3E8"/>
@@ -319,23 +322,17 @@
         <line x1="232" y1="300" x2="196" y2="392" stroke="#B0763D" stroke-width="9" stroke-linecap="round"/>
       </g>
 
-      <!-- vision cone -->
-      <g id="cone" opacity="0">
-        <path d="M330,268 L176,596 L566,596 L410,268 Z" fill="url(#gCone)"/>
-        <path d="M330,268 L176,596 L566,596 L410,268 Z" fill="none" stroke="#FFE066" stroke-opacity=".5" stroke-width="3"/>
-      </g>
-
       <!-- teacher bubbles -->
       <g id="bubbles">
         <g id="bubbleL" opacity=".96">
-          <ellipse cx="248" cy="188" rx="62" ry="44" fill="#FFFFFF" filter="url(#soft2)"/>
-          <path d="M288,216 l16,26 l-30,-12z" fill="#FFFFFF"/>
-          <text id="bubbleLText" x="248" y="196" text-anchor="middle" font-size="21" font-weight="800" fill="#6B5B4A">이러쿵</text>
+          <ellipse cx="272" cy="172" rx="46" ry="31" fill="#FFFFFF" filter="url(#soft2)"/>
+          <path d="M296,196 l10,22 l-24,-10z" fill="#FFFFFF"/>
+          <text id="bubbleLText" x="272" y="180" text-anchor="middle" font-size="19" font-weight="800" fill="#6B5B4A">이러쿵</text>
         </g>
         <g id="bubbleR" opacity=".96">
-          <ellipse cx="492" cy="196" rx="58" ry="40" fill="#FFFFFF" filter="url(#soft2)"/>
-          <path d="M452,222 l-14,24 l28,-10z" fill="#FFFFFF"/>
-          <text id="bubbleRText" x="492" y="204" text-anchor="middle" font-size="21" font-weight="800" fill="#6B5B4A">저러쿵</text>
+          <ellipse cx="500" cy="176" rx="47" ry="31" fill="#FFFFFF" filter="url(#soft2)"/>
+          <path d="M472,200 l-10,22 l24,-10z" fill="#FFFFFF"/>
+          <text id="bubbleRText" x="500" y="184" text-anchor="middle" font-size="19" font-weight="800" fill="#6B5B4A">저러쿵</text>
         </g>
         <g id="alertMark" opacity="0" transform="translate(368,96)">
           <circle r="30" fill="#FF4D6D" filter="url(#soft2)"/>
@@ -389,88 +386,64 @@
         </g>
       </g>
 
-      <!-- ================= FRIEND (front row) ================= -->
+      <!-- vision cone -->
+      <g id="cone" opacity="0" style="mix-blend-mode:screen">
+        <path d="M348,302 L196,596 L626,596 L392,302 Z" fill="url(#gCone)"/>
+        <path d="M348,302 L196,596 L626,596 L392,302 Z" fill="none" stroke="#FFE066" stroke-opacity=".55" stroke-width="3"/>
+      </g>
+
+      <!-- ================= FRIEND (앞자리 — 이 머리 뒤로 숨는다) ================= -->
       <g id="friendGroup">
-        <ellipse cx="400" cy="548" rx="132" ry="60" fill="url(#gFriend)"/>
-        <path d="M400,506 q40,10 44,42 q-44,18 -88,0 q4,-32 44,-42z" fill="#F2A64E" opacity=".5"/>
-        <!-- back tag -->
-        <g transform="translate(381,542)">
+        <ellipse cx="400" cy="604" rx="108" ry="56" fill="url(#gFriend)"/>
+        <path d="M400,566 q34,10 38,38 q-38,16 -76,0 q4,-28 38,-38z" fill="#F2A64E" opacity=".45"/>
+        <g transform="translate(381,584)">
           <rect x="0" y="0" width="40" height="26" rx="5" fill="#FFF6E0" stroke="#D08A32" stroke-width="2"/>
           <line x1="6" y1="9" x2="34" y2="9" stroke="#D8A45E" stroke-width="2.5"/>
           <line x1="6" y1="17" x2="26" y2="17" stroke="#D8A45E" stroke-width="2.5"/>
         </g>
-        <!-- hair -->
-        <ellipse cx="400" cy="432" rx="90" ry="84" fill="url(#gFriend)" stroke="#D97F14" stroke-width="3"/>
-        <ellipse cx="316" cy="456" rx="22" ry="28" fill="#F79A2B"/>
-        <ellipse cx="484" cy="456" rx="22" ry="28" fill="#F79A2B"/>
-        <!-- crown swirl -->
-        <path d="M400,404 q-58,4 -66,46 q-4,-46 30,-60 q-24,-2 -30,-16 q34,14 66,6 q32,8 66,-6 q-6,14 -30,16 q34,14 30,60 q-8,-42 -66,-46z" fill="#FCAE4E" opacity=".75"/>
-        <path d="M400,404 q40,10 44,44 q-44,-16 -88,0 q4,-34 44,-44z" fill="#FDC97F" opacity=".55"/>
-        <ellipse cx="400" cy="352" rx="26" ry="20" fill="#F79A2B"/>
-        <ellipse cx="400" cy="352" rx="14" ry="10" fill="#FFC171" opacity=".6"/>
+        <g transform="translate(0,-28)">
+          <ellipse cx="400" cy="438" rx="86" ry="80" fill="url(#gFriend)" stroke="#D97F14" stroke-width="3"/>
+          <ellipse cx="316" cy="456" rx="22" ry="28" fill="#F79A2B"/>
+          <ellipse cx="484" cy="456" rx="22" ry="28" fill="#F79A2B"/>
+          <path d="M400,404 q-58,4 -66,46 q-4,-46 30,-60 q-24,-2 -30,-16 q34,14 66,6 q32,8 66,-6 q-6,14 -30,16 q34,14 30,60 q-8,-42 -66,-46z" fill="#FCAE4E" opacity=".72"/>
+          <path d="M400,404 q40,10 44,44 q-44,-16 -88,0 q4,-34 44,-44z" fill="#FDC97F" opacity=".5"/>
+          <ellipse cx="400" cy="360" rx="26" ry="20" fill="#F79A2B"/>
+          <ellipse cx="400" cy="360" rx="14" ry="10" fill="#FFC171" opacity=".55"/>
+        </g>
       </g>
 
-      <!-- ================= SUE ================= -->
+      <!-- ================= SUE (앞자리 친구 뒤로 숨는 주인공) ================= -->
       <g id="sueGroup">
-        <g id="sueBody">
-          <ellipse cx="400" cy="596" rx="104" ry="62" fill="#9B7BD4"/>
-          <ellipse cx="400" cy="600" rx="96" ry="54" fill="#A98BE0"/>
-          <path d="M400,548 q-34,4 -50,20 l24,18 q26,-14 26,-14 q0,0 26,14 l24,-18 q-16,-16 -50,-20z" fill="#FFFFFF"/>
-          <path d="M372,560 q28,10 56,0 q-6,16 -28,18 q-22,-2 -28,-18z" fill="#FFD34E"/>
-          <path d="M400,570 q-12,-8 -18,0 q6,10 18,12 q12,-2 18,-12 q-6,-8 -18,0z" fill="#F5BC2E"/>
+        <g id="sueBody" transform="translate(0,26)">
+          <ellipse cx="400" cy="600" rx="112" ry="72" fill="#9B7BD4"/>
+          <ellipse cx="400" cy="606" rx="102" ry="62" fill="#A98BE0"/>
+          <path d="M400,524 q-40,4 -56,24 l28,20 q28,-16 28,-16 q0,0 28,16 l28,-20 q-16,-20 -56,-24z" fill="#FFFFFF"/>
+          <path d="M366,548 q34,12 68,0 q-6,18 -34,20 q-28,-2 -34,-20z" fill="#FFD34E"/>
+          <path d="M400,560 q-13,-9 -20,0 q7,11 20,13 q13,-2 20,-13 q-7,-9 -20,0z" fill="#F5BC2E"/>
         </g>
-        <g id="sueHead">
-          <circle cx="400" cy="498" r="58" fill="url(#gSue)"/>
-          <circle cx="400" cy="498" r="58" fill="none" stroke="#E86BA4" stroke-width="3"/>
-          <!-- curls -->
-          <g fill="#FFB0D8">
-            <circle cx="374" cy="470" r="12"/><circle cx="400" cy="460" r="13"/><circle cx="426" cy="470" r="12"/>
-            <circle cx="358" cy="496" r="10"/><circle cx="442" cy="496" r="10"/>
-            <circle cx="400" cy="522" r="11"/>
+        <g id="sueHead" transform="translate(400,500) scale(0.88) translate(-400,-482)">
+          <circle cx="400" cy="482" r="58" fill="url(#gSue)" stroke="#DD5F97" stroke-width="4"/>
+          <g stroke="#FFBEE0" stroke-width="4.5" fill="none" stroke-linecap="round" opacity=".85">
+            <path d="M366,458 q24,-16 46,2"/>
+            <path d="M354,490 q28,-16 54,4"/>
+            <path d="M374,516 q22,-8 44,10"/>
           </g>
-          <g fill="#FF8CC4">
-            <circle cx="374" cy="470" r="6"/><circle cx="400" cy="460" r="6"/><circle cx="426" cy="470" r="6"/>
-          </g>
-          <!-- side buns -->
-          <circle cx="342" cy="484" r="24" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2.5"/>
-          <circle cx="342" cy="484" r="12" fill="#FFC7E4"/>
-          <circle cx="458" cy="484" r="24" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2.5"/>
-          <circle cx="458" cy="484" r="12" fill="#FFC7E4"/>
-          <!-- hair tie -->
-          <path d="M400,440 q18,4 22,16 q-20,6 -22,6 q-2,0 -22,-6 q4,-12 22,-16z" fill="#FF5C9E" opacity=".9"/>
+          <circle cx="344" cy="466" r="23" fill="#FFA8D2" stroke="#DD5F97" stroke-width="3"/>
+          <circle cx="344" cy="466" r="10" fill="#FFC7E4"/>
+          <circle cx="456" cy="466" r="23" fill="#FFA8D2" stroke="#DD5F97" stroke-width="3"/>
+          <circle cx="456" cy="466" r="10" fill="#FFC7E4"/>
+          <path d="M400,424 q18,4 22,16 q-20,6 -22,6 q-2,0 -22,-6 q4,-12 22,-16z" fill="#FF5C9E" opacity=".9"/>
         </g>
       </g>
 
-      <!-- ================= SUE'S DESK ================= -->
+      <!-- ================= SUE'S DESK (앞쪽 책상 모서리) ================= -->
       <g id="deskGroup">
-        <rect x="196" y="556" width="408" height="70" rx="12" fill="#FFF8F2" stroke="#EBA6C6" stroke-width="4"/>
-        <rect x="196" y="556" width="408" height="16" rx="8" fill="#FFFDFA"/>
-        <rect x="214" y="600" width="372" height="8" rx="4" fill="#F7D7E5"/>
-        <!-- open notebook -->
-        <g transform="translate(250,548) rotate(-4)">
-          <rect x="0" y="0" width="78" height="26" rx="4" fill="#FFFFFF" stroke="#E5D3BE" stroke-width="2"/>
-          <line x1="39" y1="0" x2="39" y2="26" stroke="#E5D3BE" stroke-width="2"/>
-          <g stroke="#D9C4AC" stroke-width="1.5">
-            <line x1="6" y1="8" x2="34" y2="8"/><line x1="6" y1="14" x2="30" y2="14"/><line x1="6" y1="20" x2="32" y2="20"/>
-            <line x1="44" y1="8" x2="72" y2="8"/><line x1="44" y1="14" x2="66" y2="14"/><line x1="44" y1="20" x2="70" y2="20"/>
-          </g>
-        </g>
-        <!-- snack bag on desk (tappable) -->
-        <g id="bag" class="bag" transform="translate(498,536)" role="button" aria-label="맛동산 봉지">
-          <g class="bag-inner">
-            <path d="M-30,10 q-6,44 6,54 q24,10 48,0 q12,-10 6,-54z" fill="url(#gBag)" stroke="#B57A22" stroke-width="2.5"/>
-            <path d="M-26,10 h52 l-4,-16 q-22,-6 -44,0z" fill="#F9D98F" stroke="#B57A22" stroke-width="2.5"/>
-            <rect x="-12" y="24" width="24" height="18" rx="3" fill="#C0392B"/>
-            <text x="0" y="38" text-anchor="middle" font-size="10" font-weight="900" fill="#FFE9A8">맛동산</text>
-            <g fill="#E5A24A" stroke="#A9701F" stroke-width="1">
-              <ellipse cx="-14" cy="-10" rx="9" ry="7"/><ellipse cx="0" cy="-16" rx="9" ry="7"/><ellipse cx="14" cy="-10" rx="9" ry="7"/>
-            </g>
-          </g>
-        </g>
+        <rect x="96" y="590" width="608" height="30" rx="10" fill="#FFF8F2" stroke="#EBA6C6" stroke-width="4"/>
+        <rect x="96" y="590" width="608" height="10" rx="5" fill="#FFFDFA"/>
       </g>
 
       <!-- ================= FACE WINDOW ================= -->
-      <g id="faceWindow" transform="translate(666,482)">
+      <g id="faceWindow" transform="translate(700,478) scale(0.94)">
         <circle r="88" fill="#FFD34E" filter="url(#soft)"/>
         <circle r="82" fill="#FFF1B8"/>
         <circle r="76" fill="url(#gFaceField)"/>
@@ -545,13 +518,27 @@
         <circle r="82" fill="none" stroke="#FFE07A" stroke-width="3" opacity=".8"/>
         <!-- chew ring -->
         <g transform="rotate(-90)">
-          <circle id="chewBg" r="94" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="10" opacity="0"/>
-          <circle id="chewArc" r="94" fill="none" stroke="#FF5C9E" stroke-width="10" stroke-linecap="round"
-                  stroke-dasharray="590.6" stroke-dashoffset="590.6" opacity="0"/>
+          <circle id="chewBg" r="81" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="9" opacity="0"/>
+          <circle id="chewArc" r="81" fill="none" stroke="#FF5C9E" stroke-width="9" stroke-linecap="round"
+                  stroke-dasharray="508.9" stroke-dashoffset="508.9" opacity="0"/>
         </g>
         <g id="mouthBadge" opacity="0">
           <rect x="-34" y="66" width="68" height="26" rx="13" fill="#FF5C9E" stroke="#FFFFFF" stroke-width="3"/>
           <text id="mouthBadgeText" x="0" y="84" text-anchor="middle" font-size="16" font-weight="900" fill="#FFF">×3</text>
+        </g>
+      </g>
+
+      <!-- ================= 맛동산 봉지 (터치해서 먹기) ================= -->
+      <g id="bag" transform="translate(590,537) scale(0.86)" role="button" aria-label="맛동산 봉지">
+        <g class="bag-inner">
+          <rect x="-34" y="52" width="68" height="14" rx="6" fill="#FFE3EE" stroke="#EBA6C6" stroke-width="2"/>
+          <path d="M-30,10 q-6,44 6,54 q24,10 48,0 q12,-10 6,-54z" fill="url(#gBag)" stroke="#B57A22" stroke-width="2.5"/>
+          <path d="M-26,10 h52 l-4,-16 q-22,-6 -44,0z" fill="#F9D98F" stroke="#B57A22" stroke-width="2.5"/>
+          <rect x="-13" y="24" width="26" height="20" rx="3" fill="#C0392B"/>
+          <text x="0" y="39" text-anchor="middle" font-size="11" font-weight="900" fill="#FFE9A8">맛동산</text>
+          <g fill="#E5A24A" stroke="#A9701F" stroke-width="1">
+            <ellipse cx="-14" cy="-10" rx="9" ry="7"/><ellipse cx="0" cy="-16" rx="9" ry="7"/><ellipse cx="14" cy="-10" rx="9" ry="7"/>
+          </g>
         </g>
       </g>
 
@@ -560,8 +547,9 @@
       <rect id="flashCatch" x="0" y="0" width="800" height="600" fill="#FF1B3C" opacity="0" pointer-events="none"/>
     </svg>
 
-    <div id="hint" class="hint">탭해서 시작</div>
   </div>
+
+  <div class="captionbar"><span id="hint" class="hint">선생님이 칠판을 보고 있다</span></div>
 
   <div class="statusbar">
     <span id="hideChip" class="chip chip-bad">👀 노출</span>
