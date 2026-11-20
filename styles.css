@@ -178,7 +178,14 @@ body{
   .brand{font-size:14px;}
 }
 @media (max-height:600px){
-  .statusbar{display:none;}
+  :root{--pad-max:200px;}
+  .captionbar{height:30px;}
+  .hint{font-size:11px; padding:5px 12px;}
+  .statusbar{height:22px;}
+  .chip{font-size:10px; padding:3px 7px;}
+  .pad-row{min-height:58px;}
+  .eat-btn{min-height:64px; font-size:16px;}
+  .eat-btn .eat-ico{font-size:20px;}
 }
 
 /* ---------- overlay screens ---------- */
