@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>슈의 수업시간에 맛동산 먹기</title>
+<meta name="theme-color" content="#FFD84D">
+<meta name="description" content="추억의 플래시게임, 슈의 수업시간에 맛동산 먹기 — 모바일 터치용 웹게임">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="brand"><span class="brand-dot">🍪</span> 슈의 맛동산</div>
+    <div class="tools">
+      <button id="btnMute" class="icon-btn" aria-label="소리 켜기/끄기">🔊</button>
+      <button id="btnPause" class="icon-btn" aria-label="일시정지">⏸</button>
+    </div>
+  </header>
+
+  <div class="stage-wrap" id="stageWrap">
+    <svg id="scene" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="교실">
+      <defs>
+        <linearGradient id="gWall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFE98A"/><stop offset="1" stop-color="#FFD24A"/>
+        </linearGradient>
+        <linearGradient id="gFloor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#D89B5E"/><stop offset="1" stop-color="#A5683A"/>
+        </linearGradient>
+        <linearGradient id="gBoard" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#307767"/><stop offset="1" stop-color="#154B41"/>
+        </linearGradient>
+        <linearGradient id="gWood" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#BC8043"/><stop offset="1" stop-color="#8A5626"/>
+        </linearGradient>
+        <linearGradient id="gCone" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFF9C9" stop-opacity=".92"/>
+          <stop offset=".55" stop-color="#FFE466" stop-opacity=".42"/>
+          <stop offset="1" stop-color="#FFD21E" stop-opacity=".06"/>
+        </linearGradient>
+        <linearGradient id="gSkin" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FFE9D4"/><stop offset="1" stop-color="#FBCCA9"/>
+        </linearGradient>
+        <linearGradient id="gSue" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FF9ED0"/><stop offset="1" stop-color="#FF7FBB"/>
+        </linearGradient>
+        <linearGradient id="gFriend" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#FCA43A"/><stop offset="1" stop-color="#EF8A18"/>
+        </linearGradient>
+        <linearGradient id="gBag" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F6C46A"/><stop offset="1" stop-color="#DC9C36"/>
+        </linearGradient>
+        <radialGradient id="gWin" cx=".5" cy=".25" r=".85">
+          <stop offset="0" stop-color="#F2FBFF"/><stop offset="1" stop-color="#B9E4FA"/>
+        </radialGradient>
+        <radialGradient id="gFaceField" cx=".5" cy=".4" r=".7">
+          <stop offset="0" stop-color="#FFF9E0"/><stop offset="1" stop-color="#FFE9A8"/>
+        </radialGradient>
+        <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#8A5528" flood-opacity=".28"/>
+        </filter>
+        <filter id="soft2" x="-40%" y="-40%" width="180%" height="180%">
+          <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#7A4A12" flood-opacity=".3"/>
+        </filter>
+        <clipPath id="faceClip"><circle cx="0" cy="0" r="76"/></clipPath>
+        <clipPath id="boardClip"><rect x="96" y="90" width="528" height="214" rx="4"/></clipPath>
+        <clipPath id="clockClip"><circle id="clockClipC" cx="720" cy="62" r="44"/></clipPath>
+      </defs>
+
+      <!-- ================= ROOM ================= -->
+      <g id="room">
+        <rect x="0" y="0" width="800" height="430" fill="url(#gWall)"/>
+        <!-- faint wall stars -->
+        <g fill="#FFC61A" opacity=".38">
+          <path d="M120,240 l5,12 13,1 -10,8 3,13 -11,-7 -11,7 3,-13 -10,-8 13,-1z"/>
+          <path d="M700,340 l4,10 11,1 -8,7 2,11 -9,-6 -9,6 2,-11 -8,-7 11,-1z"/>
+          <path d="M60,60 l4,10 11,1 -8,7 2,11 -9,-6 -9,6 2,-11 -8,-7 11,-1z"/>
+          <path d="M760,190 l4,10 11,1 -8,7 2,11 -9,-6 -9,6 2,-11 -8,-7 11,-1z"/>
+        </g>
+        <!-- floor -->
+        <rect x="0" y="430" width="800" height="170" fill="url(#gFloor)"/>
+        <g stroke="#8B5526" stroke-opacity=".38" stroke-width="2.5">
+          <line x1="0" y1="462" x2="800" y2="460"/>
+          <line x1="0" y1="500" x2="800" y2="498"/>
+          <line x1="0" y1="545" x2="800" y2="543"/>
+          <line x1="0" y1="592" x2="800" y2="590"/>
+        </g>
+        <g stroke="#8B5526" stroke-opacity=".22" stroke-width="2">
+          <line x1="120" y1="462" x2="100" y2="500"/><line x1="330" y1="461" x2="336" y2="500"/>
+          <line x1="540" y1="460" x2="552" y2="499"/><line x1="700" y1="460" x2="716" y2="498"/>
+          <line x1="60" y1="500" x2="34" y2="545"/><line x1="420" y1="499" x2="430" y2="545"/>
+          <line x1="640" y1="499" x2="664" y2="544"/>
+        </g>
+        <!-- mint baseboard -->
+        <rect x="0" y="410" width="800" height="22" fill="#63CFAE"/>
+        <rect x="0" y="410" width="800" height="7" fill="#96E8CC"/>
+        <rect x="0" y="428" width="800" height="4" fill="#4AB391" opacity=".5"/>
+      </g>
+
+      <!-- ================= BLACKBOARD ================= -->
+      <g id="board">
+        <rect x="80" y="72" width="560" height="250" rx="10" fill="#8A5626" filter="url(#soft)"/>
+        <rect x="80" y="72" width="560" height="12" rx="6" fill="#A06830"/>
+        <rect x="96" y="90" width="528" height="214" rx="4" fill="url(#gBoard)"/>
+        <g clip-path="url(#boardClip)">
+          <ellipse cx="250" cy="180" rx="180" ry="90" fill="#3C8C78" opacity=".18"/>
+        </g>
+        <g font-family="'Nanum Pen Script','Apple SD Gothic Neo','Malgun Gothic',sans-serif" fill="#E8F3EC" opacity=".92">
+          <text x="128" y="152" font-size="34" font-weight="700" letter-spacing="1">학습목표:</text>
+          <path d="M130,164 q60,8 118,2" stroke="#E8F3EC" stroke-opacity=".6" stroke-width="3" fill="none"/>
+          <text x="470" y="238" font-size="26" font-weight="700">떠든사람:</text>
+          <text x="512" y="284" font-size="30" font-weight="700">슈</text>
+        </g>
+        <!-- chalk smudges -->
+        <ellipse cx="180" cy="270" rx="46" ry="12" fill="#E8F3EC" opacity=".07"/>
+        <ellipse cx="330" cy="292" rx="60" ry="10" fill="#E8F3EC" opacity=".05"/>
+        <!-- chalk tray -->
+        <rect x="90" y="304" width="540" height="14" rx="6" fill="#A06830"/>
+        <rect x="90" y="304" width="540" height="4" rx="2" fill="#BE8145"/>
+      </g>
+
+      <!-- ================= WALL DECOR ================= -->
+      <!-- 태극기 -->
+      <g id="flag" transform="translate(300,14)">
+        <rect x="-6" y="-6" width="104" height="64" rx="4" fill="#FFFDF6" stroke="#E2C9A4" stroke-width="2" filter="url(#soft2)"/>
+        <g transform="translate(0,0)">
+          <rect x="0" y="0" width="92" height="52" fill="#FFFFFF"/>
+          <circle cx="46" cy="26" r="14" fill="#0047A0"/>
+          <path d="M46,12 A14,14 0 0 1 46,40 A7,7 0 0 0 46,26 A7,7 0 0 1 46,12 Z" fill="#CD2E3A"/>
+          <g fill="#111">
+            <g transform="translate(16,14) rotate(-56)"><rect x="-1" y="-7" width="14" height="2.6"/><rect x="-1" y="-2" width="14" height="2.6"/><rect x="-1" y="3" width="14" height="2.6"/></g>
+            <g transform="translate(76,14) rotate(56)"><rect x="-13" y="-7" width="14" height="2.6"/><rect x="-13" y="-2" width="14" height="2.6"/><rect x="-13" y="3" width="14" height="2.6"/></g>
+            <g transform="translate(16,38) rotate(56)"><rect x="-1" y="-2" width="14" height="2.6"/><rect x="-1" y="3" width="14" height="2.6"/><rect x="-1" y="-7" width="14" height="2.6"/></g>
+            <g transform="translate(76,38) rotate(-56)"><rect x="-13" y="-2" width="14" height="2.6"/><rect x="-13" y="3" width="14" height="2.6"/><rect x="-13" y="-7" width="14" height="2.6"/></g>
+          </g>
+        </g>
+      </g>
+
+      <!-- 경고 카드 판 -->
+      <g id="warnPanel" transform="translate(422,8)">
+        <rect x="0" y="0" width="196" height="76" rx="14" fill="#FFC94D" stroke="#DFA020" stroke-width="4" filter="url(#soft2)"/>
+        <text x="98" y="26" text-anchor="middle" font-size="17" font-weight="800" fill="#7A4A12" letter-spacing="-.5">경고가 3장이면 퇴장!</text>
+        <g id="warnCards">
+          <g class="wcard"><rect x="16" y="34" width="48" height="34" rx="7" fill="#FFF6E2" stroke="#DFA020" stroke-width="3"/><text x="40" y="58" text-anchor="middle" font-size="20" font-weight="900" fill="#E7A33C">!</text></g>
+          <g class="wcard"><rect x="74" y="34" width="48" height="34" rx="7" fill="#FFF6E2" stroke="#DFA020" stroke-width="3"/><text x="98" y="58" text-anchor="middle" font-size="20" font-weight="900" fill="#E7A33C">!</text></g>
+          <g class="wcard"><rect x="132" y="34" width="48" height="34" rx="7" fill="#FFF6E2" stroke="#DFA020" stroke-width="3"/><text x="156" y="58" text-anchor="middle" font-size="20" font-weight="900" fill="#E7A33C">!</text></g>
+        </g>
+      </g>
+
+      <!-- 시계 -->
+      <g id="clock" transform="translate(720,62)">
+        <circle r="52" fill="#F3A63C" filter="url(#soft2)"/>
+        <circle r="44" fill="#FFFDF2" stroke="#E3902F" stroke-width="2"/>
+        <g id="clockTicks" stroke="#D9C7A0" stroke-width="2.5">
+          <line x1="0" y1="-38" x2="0" y2="-32"/><line x1="0" y1="38" x2="0" y2="32"/>
+          <line x1="-38" y1="0" x2="-32" y2="0"/><line x1="38" y1="0" x2="32" y2="0"/>
+          <line x1="-19" y1="-33" x2="-16" y2="-28"/><line x1="19" y1="-33" x2="16" y2="-28"/>
+          <line x1="-19" y1="33" x2="-16" y2="28"/><line x1="19" y1="33" x2="16" y2="28"/>
+          <line x1="-33" y1="-19" x2="-28" y2="-16"/><line x1="33" y1="-19" x2="28" y2="-16"/>
+          <line x1="-33" y1="19" x2="-28" y2="16"/><line x1="33" y1="19" x2="28" y2="16"/>
+        </g>
+        <text x="0" y="-22" text-anchor="middle" font-size="13" font-weight="800" fill="#B99367">12</text>
+        <text x="26" y="6" text-anchor="middle" font-size="12" font-weight="800" fill="#B99367">3</text>
+        <text x="0" y="34" text-anchor="middle" font-size="12" font-weight="800" fill="#B99367">6</text>
+        <text x="-26" y="6" text-anchor="middle" font-size="12" font-weight="800" fill="#B99367">9</text>
+        <g id="clockHourHand"><line x1="0" y1="4" x2="0" y2="-22" stroke="#5A4326" stroke-width="6" stroke-linecap="round"/></g>
+        <g id="clockMinHand"><line x1="0" y1="6" x2="0" y2="-34" stroke="#3E2F1A" stroke-width="4.5" stroke-linecap="round"/></g>
+        <circle r="5" fill="#3E2F1A"/>
+        <circle r="2" fill="#FFFDF2"/>
+      </g>
+
+      <!-- 시간표 -->
+      <g id="timetable" transform="translate(6,146)">
+        <rect x="0" y="0" width="72" height="146" rx="6" fill="#72D2B2" stroke="#48AF8E" stroke-width="3" filter="url(#soft2)"/>
+        <rect x="7" y="7" width="58" height="132" rx="3" fill="#FFFDF4"/>
+        <text x="36" y="24" text-anchor="middle" font-size="13" font-weight="800" fill="#4A8A75">시간표</text>
+        <g stroke="#B9DFD0" stroke-width="2">
+          <line x1="12" y1="34" x2="60" y2="34"/><line x1="12" y1="52" x2="60" y2="52"/>
+          <line x1="12" y1="70" x2="60" y2="70"/><line x1="12" y1="88" x2="60" y2="88"/>
+          <line x1="12" y1="106" x2="60" y2="106"/><line x1="12" y1="124" x2="60" y2="124"/>
+          <line x1="27" y1="30" x2="27" y2="134"/><line x1="45" y1="30" x2="45" y2="134"/>
+        </g>
+        <g fill="#D8B08A" font-size="7">
+          <text x="14" y="44">국어</text><text x="30" y="44">수학</text><text x="48" y="44">영어</text>
+          <text x="14" y="62">과학</text><text x="30" y="62">음악</text><text x="48" y="62">미술</text>
+        </g>
+      </g>
+
+      <!-- 창문 -->
+      <g id="window" transform="translate(662,132)">
+        <rect x="0" y="0" width="138" height="176" rx="6" fill="#F6EFE0" stroke="#D8C39C" stroke-width="3" filter="url(#soft2)"/>
+        <rect x="8" y="8" width="122" height="160" rx="3" fill="url(#gWin)"/>
+        <g stroke="#FFFFFF" stroke-width="6" opacity=".95">
+          <line x1="8" y1="88" x2="130" y2="88"/><line x1="69" y1="8" x2="69" y2="168"/>
+        </g>
+        <g fill="#FFFFFF" opacity=".5">
+          <path d="M18,140 q34,-26 68,-6 q-30,22 -68,6z"/>
+        </g>
+        <rect x="-8" y="168" width="154" height="12" rx="4" fill="#F6EFE0" stroke="#D8C39C" stroke-width="2"/>
+      </g>
+
+      <!-- 꽃병 -->
+      <g id="vase" transform="translate(636,300)">
+        <path d="M0,0 q16,4 16,20 l-4,30 q0,10 -14,10 q-14,0 -14,-10 l-4,-30 q0,-16 16,-20z" fill="#BEE7F5" stroke="#8ECFE6" stroke-width="2"/>
+        <g stroke="#6FBFA0" stroke-width="3" fill="none">
+          <path d="M0,6 q-14,-34 -26,-46"/><path d="M0,6 q10,-38 22,-52"/><path d="M0,6 q2,-30 -2,-54"/>
+        </g>
+        <g>
+          <circle cx="-28" cy="-44" r="9" fill="#FFA8C8"/><circle cx="-28" cy="-44" r="4" fill="#FFE07A"/>
+          <circle cx="22" cy="-50" r="9" fill="#FFC0D8"/><circle cx="22" cy="-50" r="4" fill="#FFE07A"/>
+          <circle cx="-2" cy="-56" r="8" fill="#FFB3CF"/><circle cx="-2" cy="-56" r="3.5" fill="#FFE07A"/>
+          <circle cx="-16" cy="-62" r="6" fill="#FFD3E4"/><circle cx="12" cy="-66" r="6" fill="#FFD3E4"/>
+        </g>
+      </g>
+
+      <!-- 맛동산 찬장 (좌상단) -->
+      <g id="shelf" transform="translate(2,0)">
+        <rect x="0" y="-6" width="176" height="88" rx="12" fill="url(#gWood)" stroke="#74471C" stroke-width="4" filter="url(#soft)"/>
+        <rect x="8" y="2" width="160" height="72" rx="8" fill="#6B4118" opacity=".55"/>
+        <!-- cookies pile -->
+        <g id="shelfPile">
+          <g fill="#E5A24A" stroke="#A9701F" stroke-width="1.5">
+            <ellipse cx="34" cy="62" rx="17" ry="12"/>
+            <ellipse cx="60" cy="60" rx="17" ry="12"/>
+            <ellipse cx="46" cy="46" rx="17" ry="12"/>
+            <ellipse cx="72" cy="44" rx="16" ry="11"/>
+            <ellipse cx="34" cy="30" rx="16" ry="11"/>
+            <ellipse cx="58" cy="28" rx="17" ry="12"/>
+            <ellipse cx="44" cy="14" rx="15" ry="10"/>
+          </g>
+          <g fill="#B67A22" opacity=".75">
+            <circle cx="30" cy="60" r="2"/><circle cx="40" cy="64" r="2"/><circle cx="56" cy="58" r="2"/>
+            <circle cx="66" cy="62" r="2"/><circle cx="42" cy="44" r="2"/><circle cx="52" cy="48" r="2"/>
+            <circle cx="70" cy="42" r="2"/><circle cx="30" cy="28" r="2"/><circle cx="54" cy="26" r="2"/>
+            <circle cx="62" cy="30" r="2"/><circle cx="42" cy="12" r="2"/>
+          </g>
+        </g>
+        <!-- count badge -->
+        <g transform="translate(98,14)">
+          <rect x="0" y="0" width="70" height="58" rx="12" fill="#FFF7E0" stroke="#A9701F" stroke-width="3"/>
+          <text id="hudSnack" x="35" y="32" text-anchor="middle" font-size="30" font-weight="900" fill="#8A4E0E">15</text>
+          <text x="35" y="49" text-anchor="middle" font-size="13" font-weight="800" fill="#B07A2E">남은 과자</text>
+        </g>
+      </g>
+
+      <!-- ================= TEACHER ================= -->
+      <!-- back view -->
+      <g id="teacherBack">
+        <ellipse cx="368" cy="356" rx="98" ry="64" fill="#7FB3D5"/>
+        <path d="M292,320 q76,-30 152,0 l0,66 q-76,22 -152,0z" fill="#79ACCE"/>
+        <path d="M318,300 q50,24 100,0 q-4,28 -50,32 q-46,-4 -50,-32z" fill="#FFD766"/>
+        <path d="M318,300 q50,24 100,0 q-3,12 -50,14 q-47,-2 -50,-14z" fill="#F5C13D"/>
+        <rect x="350" y="274" width="36" height="26" rx="10" fill="#F7CBA6"/>
+        <ellipse cx="368" cy="240" rx="74" ry="66" fill="#8C4A20"/>
+        <ellipse cx="368" cy="234" rx="66" ry="58" fill="#A05A2C"/>
+        <circle cx="368" cy="166" r="37" fill="#8C4A20"/>
+        <circle cx="368" cy="166" r="31" fill="#A05A2C"/>
+        <path d="M352,150 q26,-6 32,18" stroke="#7C3F19" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+        <circle cx="368" cy="198" r="9" fill="#E0577C"/>
+        <!-- left arm up holding pointer -->
+        <path d="M298,330 q-34,-6 -52,-36" stroke="#79ACCE" stroke-width="26" stroke-linecap="round" fill="none"/>
+        <circle cx="244" cy="292" r="15" fill="#F7CBA6"/>
+        <line x1="240" y1="286" x2="192" y2="196" stroke="#B0763D" stroke-width="9" stroke-linecap="round"/>
+        <!-- right arm -->
+        <path d="M438,332 q30,10 44,40" stroke="#79ACCE" stroke-width="24" stroke-linecap="round" fill="none"/>
+      </g>
+
+      <!-- front view (turned around) -->
+      <g id="teacherFront" opacity="0">
+        <ellipse cx="368" cy="356" rx="98" ry="64" fill="#7FB3D5"/>
+        <path d="M292,320 q76,-30 152,0 l0,66 q-76,22 -152,0z" fill="#79ACCE"/>
+        <path d="M318,300 q50,26 100,0 q-2,30 -50,34 q-48,-4 -50,-34z" fill="#FFD766"/>
+        <ellipse cx="368" cy="236" rx="78" ry="72" fill="#8C4A20"/>
+        <ellipse cx="368" cy="248" rx="62" ry="58" fill="url(#gSkin)"/>
+        <!-- fringe -->
+        <path d="M304,238 q6,-48 64,-48 q58,0 64,48 q-30,-16 -64,-10 q-34,-6 -64,10z" fill="#A05A2C"/>
+        <path d="M306,232 q10,-30 30,-38 q-6,22 4,34z" fill="#8C4A20"/>
+        <path d="M430,232 q-10,-30 -30,-38 q6,22 -4,34z" fill="#8C4A20"/>
+        <circle cx="368" cy="164" r="35" fill="#8C4A20"/>
+        <circle cx="368" cy="164" r="29" fill="#A05A2C"/>
+        <circle cx="368" cy="194" r="8" fill="#E0577C"/>
+        <!-- eyes -->
+        <g fill="#4A2B12">
+          <ellipse cx="340" cy="250" rx="6" ry="8"/>
+          <ellipse cx="396" cy="250" rx="6" ry="8"/>
+        </g>
+        <!-- angry brows -->
+        <g stroke="#7C3F19" stroke-width="4" stroke-linecap="round">
+          <line x1="326" y1="234" x2="352" y2="240"/>
+          <line x1="410" y1="234" x2="384" y2="240"/>
+        </g>
+        <!-- heart glasses -->
+        <g fill="#FF7FAE" fill-opacity=".82" stroke="#E85D94" stroke-width="4">
+          <path d="M340,236 c-14,-14 -34,-4 -24,14 c6,12 24,22 24,22 c0,0 18,-10 24,-22 c10,-18 -10,-28 -24,-14z"/>
+          <path d="M396,236 c-14,-14 -34,-4 -24,14 c6,12 24,22 24,22 c0,0 18,-10 24,-22 c10,-18 -10,-28 -24,-14z"/>
+        </g>
+        <g stroke="#E85D94" stroke-width="4" fill="none">
+          <line x1="362" y1="248" x2="374" y2="248"/>
+        </g>
+        <g fill="#FFFFFF" opacity=".75">
+          <ellipse cx="330" cy="240" rx="6" ry="4" transform="rotate(-25 330 240)"/>
+          <ellipse cx="386" cy="240" rx="6" ry="4" transform="rotate(-25 386 240)"/>
+        </g>
+        <!-- mouth -->
+        <path d="M356,286 q12,-9 24,0 q-12,12 -24,0z" fill="#D2735C"/>
+        <!-- earrings -->
+        <circle cx="300" cy="268" r="7" fill="#4FC3E8"/>
+        <circle cx="436" cy="268" r="7" fill="#4FC3E8"/>
+        <!-- arms -->
+        <path d="M292,330 q-36,-4 -54,-34" stroke="#79ACCE" stroke-width="26" stroke-linecap="round" fill="none"/>
+        <path d="M444,330 q36,-4 54,-34" stroke="#79ACCE" stroke-width="26" stroke-linecap="round" fill="none"/>
+        <circle cx="238" cy="294" r="15" fill="#F7CBA6"/>
+        <circle cx="498" cy="294" r="15" fill="#F7CBA6"/>
+        <line x1="232" y1="300" x2="196" y2="392" stroke="#B0763D" stroke-width="9" stroke-linecap="round"/>
+      </g>
+
+      <!-- vision cone -->
+      <g id="cone" opacity="0">
+        <path d="M330,268 L176,596 L566,596 L410,268 Z" fill="url(#gCone)"/>
+        <path d="M330,268 L176,596 L566,596 L410,268 Z" fill="none" stroke="#FFE066" stroke-opacity=".5" stroke-width="3"/>
+      </g>
+
+      <!-- teacher bubbles -->
+      <g id="bubbles">
+        <g id="bubbleL" opacity=".96">
+          <ellipse cx="248" cy="188" rx="62" ry="44" fill="#FFFFFF" filter="url(#soft2)"/>
+          <path d="M288,216 l16,26 l-30,-12z" fill="#FFFFFF"/>
+          <text id="bubbleLText" x="248" y="196" text-anchor="middle" font-size="21" font-weight="800" fill="#6B5B4A">이러쿵</text>
+        </g>
+        <g id="bubbleR" opacity=".96">
+          <ellipse cx="492" cy="196" rx="58" ry="40" fill="#FFFFFF" filter="url(#soft2)"/>
+          <path d="M452,222 l-14,24 l28,-10z" fill="#FFFFFF"/>
+          <text id="bubbleRText" x="492" y="204" text-anchor="middle" font-size="21" font-weight="800" fill="#6B5B4A">저러쿵</text>
+        </g>
+        <g id="alertMark" opacity="0" transform="translate(368,96)">
+          <circle r="30" fill="#FF4D6D" filter="url(#soft2)"/>
+          <text x="0" y="12" text-anchor="middle" font-size="38" font-weight="900" fill="#FFF">!</text>
+        </g>
+      </g>
+
+      <!-- ================= CLASSMATES / DESKS (background) ================= -->
+      <g id="classmates">
+        <!-- far left -->
+        <g transform="translate(38,392)">
+          <ellipse cx="0" cy="34" rx="46" ry="30" fill="#F49AC6"/>
+          <circle cx="0" cy="0" r="27" fill="#F49AC6"/>
+          <circle cx="0" cy="-14" r="10" fill="#F49AC6"/>
+          <rect x="-52" y="44" width="104" height="16" rx="6" fill="#FFF6EC" stroke="#F0A9CB" stroke-width="3"/>
+        </g>
+        <!-- far right -->
+        <g transform="translate(770,392)">
+          <ellipse cx="0" cy="34" rx="46" ry="30" fill="#F49AC6"/>
+          <circle cx="0" cy="0" r="27" fill="#F49AC6"/>
+          <circle cx="0" cy="-14" r="10" fill="#F49AC6"/>
+          <rect x="-52" y="44" width="104" height="16" rx="6" fill="#FFF6EC" stroke="#F0A9CB" stroke-width="3"/>
+        </g>
+        <!-- near left -->
+        <g transform="translate(64,486)">
+          <ellipse cx="0" cy="52" rx="66" ry="46" fill="#F49AC6"/>
+          <circle cx="0" cy="0" r="40" fill="#F49AC6"/>
+          <circle cx="-26" cy="-30" r="14" fill="#F7ADD3"/>
+          <rect x="-72" y="66" width="150" height="26" rx="8" fill="#FFFBF4" stroke="#F0A9CB" stroke-width="3"/>
+        </g>
+        <!-- near right -->
+        <g transform="translate(742,486)">
+          <ellipse cx="0" cy="52" rx="60" ry="46" fill="#F49AC6"/>
+          <circle cx="0" cy="0" r="38" fill="#F49AC6"/>
+          <circle cx="24" cy="-30" r="13" fill="#F7ADD3"/>
+          <rect x="-76" y="66" width="150" height="26" rx="8" fill="#FFFBF4" stroke="#F0A9CB" stroke-width="3"/>
+        </g>
+      </g>
+
+      <!-- ================= FRONT-RIGHT DESK / FRONT-LEFT DESK ================= -->
+      <g id="sideDesks">
+        <g transform="translate(-10,540)">
+          <rect x="0" y="0" width="190" height="70" rx="10" fill="#FFF7F0" stroke="#EBA6C6" stroke-width="4"/>
+          <rect x="0" y="0" width="190" height="14" rx="7" fill="#FFFDF9"/>
+          <rect x="14" y="44" width="162" height="8" rx="4" fill="#F7D7E5"/>
+        </g>
+        <g transform="translate(618,540)">
+          <rect x="0" y="0" width="192" height="70" rx="10" fill="#FFF7F0" stroke="#EBA6C6" stroke-width="4"/>
+          <rect x="0" y="0" width="192" height="14" rx="7" fill="#FFFDF9"/>
+          <rect x="14" y="44" width="164" height="8" rx="4" fill="#F7D7E5"/>
+        </g>
+      </g>
+
+      <!-- ================= FRIEND (front row) ================= -->
+      <g id="friendGroup">
+        <ellipse cx="400" cy="548" rx="132" ry="60" fill="url(#gFriend)"/>
+        <path d="M400,506 q40,10 44,42 q-44,18 -88,0 q4,-32 44,-42z" fill="#F2A64E" opacity=".5"/>
+        <!-- back tag -->
+        <g transform="translate(381,542)">
+          <rect x="0" y="0" width="40" height="26" rx="5" fill="#FFF6E0" stroke="#D08A32" stroke-width="2"/>
+          <line x1="6" y1="9" x2="34" y2="9" stroke="#D8A45E" stroke-width="2.5"/>
+          <line x1="6" y1="17" x2="26" y2="17" stroke="#D8A45E" stroke-width="2.5"/>
+        </g>
+        <!-- hair -->
+        <ellipse cx="400" cy="432" rx="90" ry="84" fill="url(#gFriend)" stroke="#D97F14" stroke-width="3"/>
+        <ellipse cx="316" cy="456" rx="22" ry="28" fill="#F79A2B"/>
+        <ellipse cx="484" cy="456" rx="22" ry="28" fill="#F79A2B"/>
+        <!-- crown swirl -->
+        <path d="M400,404 q-58,4 -66,46 q-4,-46 30,-60 q-24,-2 -30,-16 q34,14 66,6 q32,8 66,-6 q-6,14 -30,16 q34,14 30,60 q-8,-42 -66,-46z" fill="#FCAE4E" opacity=".75"/>
+        <path d="M400,404 q40,10 44,44 q-44,-16 -88,0 q4,-34 44,-44z" fill="#FDC97F" opacity=".55"/>
+        <ellipse cx="400" cy="352" rx="26" ry="20" fill="#F79A2B"/>
+        <ellipse cx="400" cy="352" rx="14" ry="10" fill="#FFC171" opacity=".6"/>
+      </g>
+
+      <!-- ================= SUE ================= -->
+      <g id="sueGroup">
+        <g id="sueBody">
+          <ellipse cx="400" cy="596" rx="104" ry="62" fill="#9B7BD4"/>
+          <ellipse cx="400" cy="600" rx="96" ry="54" fill="#A98BE0"/>
+          <path d="M400,548 q-34,4 -50,20 l24,18 q26,-14 26,-14 q0,0 26,14 l24,-18 q-16,-16 -50,-20z" fill="#FFFFFF"/>
+          <path d="M372,560 q28,10 56,0 q-6,16 -28,18 q-22,-2 -28,-18z" fill="#FFD34E"/>
+          <path d="M400,570 q-12,-8 -18,0 q6,10 18,12 q12,-2 18,-12 q-6,-8 -18,0z" fill="#F5BC2E"/>
+        </g>
+        <g id="sueHead">
+          <circle cx="400" cy="498" r="58" fill="url(#gSue)"/>
+          <circle cx="400" cy="498" r="58" fill="none" stroke="#E86BA4" stroke-width="3"/>
+          <!-- curls -->
+          <g fill="#FFB0D8">
+            <circle cx="374" cy="470" r="12"/><circle cx="400" cy="460" r="13"/><circle cx="426" cy="470" r="12"/>
+            <circle cx="358" cy="496" r="10"/><circle cx="442" cy="496" r="10"/>
+            <circle cx="400" cy="522" r="11"/>
+          </g>
+          <g fill="#FF8CC4">
+            <circle cx="374" cy="470" r="6"/><circle cx="400" cy="460" r="6"/><circle cx="426" cy="470" r="6"/>
+          </g>
+          <!-- side buns -->
+          <circle cx="342" cy="484" r="24" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2.5"/>
+          <circle cx="342" cy="484" r="12" fill="#FFC7E4"/>
+          <circle cx="458" cy="484" r="24" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2.5"/>
+          <circle cx="458" cy="484" r="12" fill="#FFC7E4"/>
+          <!-- hair tie -->
+          <path d="M400,440 q18,4 22,16 q-20,6 -22,6 q-2,0 -22,-6 q4,-12 22,-16z" fill="#FF5C9E" opacity=".9"/>
+        </g>
+      </g>
+
+      <!-- ================= SUE'S DESK ================= -->
+      <g id="deskGroup">
+        <rect x="196" y="556" width="408" height="70" rx="12" fill="#FFF8F2" stroke="#EBA6C6" stroke-width="4"/>
+        <rect x="196" y="556" width="408" height="16" rx="8" fill="#FFFDFA"/>
+        <rect x="214" y="600" width="372" height="8" rx="4" fill="#F7D7E5"/>
+        <!-- open notebook -->
+        <g transform="translate(250,548) rotate(-4)">
+          <rect x="0" y="0" width="78" height="26" rx="4" fill="#FFFFFF" stroke="#E5D3BE" stroke-width="2"/>
+          <line x1="39" y1="0" x2="39" y2="26" stroke="#E5D3BE" stroke-width="2"/>
+          <g stroke="#D9C4AC" stroke-width="1.5">
+            <line x1="6" y1="8" x2="34" y2="8"/><line x1="6" y1="14" x2="30" y2="14"/><line x1="6" y1="20" x2="32" y2="20"/>
+            <line x1="44" y1="8" x2="72" y2="8"/><line x1="44" y1="14" x2="66" y2="14"/><line x1="44" y1="20" x2="70" y2="20"/>
+          </g>
+        </g>
+        <!-- snack bag on desk (tappable) -->
+        <g id="bag" class="bag" transform="translate(498,536)" role="button" aria-label="맛동산 봉지">
+          <g class="bag-inner">
+            <path d="M-30,10 q-6,44 6,54 q24,10 48,0 q12,-10 6,-54z" fill="url(#gBag)" stroke="#B57A22" stroke-width="2.5"/>
+            <path d="M-26,10 h52 l-4,-16 q-22,-6 -44,0z" fill="#F9D98F" stroke="#B57A22" stroke-width="2.5"/>
+            <rect x="-12" y="24" width="24" height="18" rx="3" fill="#C0392B"/>
+            <text x="0" y="38" text-anchor="middle" font-size="10" font-weight="900" fill="#FFE9A8">맛동산</text>
+            <g fill="#E5A24A" stroke="#A9701F" stroke-width="1">
+              <ellipse cx="-14" cy="-10" rx="9" ry="7"/><ellipse cx="0" cy="-16" rx="9" ry="7"/><ellipse cx="14" cy="-10" rx="9" ry="7"/>
+            </g>
+          </g>
+        </g>
+      </g>
+
+      <!-- ================= FACE WINDOW ================= -->
+      <g id="faceWindow" transform="translate(666,482)">
+        <circle r="88" fill="#FFD34E" filter="url(#soft)"/>
+        <circle r="82" fill="#FFF1B8"/>
+        <circle r="76" fill="url(#gFaceField)"/>
+        <g clip-path="url(#faceClip)">
+          <!-- hair back -->
+          <circle cx="0" cy="0" r="70" fill="#FF9ED0"/>
+          <!-- face states -->
+          <g id="faceNormal">
+            <ellipse cx="0" cy="8" rx="54" ry="56" fill="url(#gSkin)"/>
+            <path d="M-56,0 q4,-52 56,-52 q52,0 56,52 q-24,-20 -56,-16 q-32,-4 -56,16z" fill="#FF9ED0"/>
+            <path d="M-56,-2 q10,-26 30,-34 q-8,20 0,30 q-16,0 -30,4z" fill="#FF7FBB"/>
+            <path d="M56,-2 q-10,-26 -30,-34 q8,20 0,30 q16,0 30,4z" fill="#FF7FBB"/>
+            <circle cx="-54" cy="-18" r="16" fill="#FFA8D2"/><circle cx="-54" cy="-18" r="8" fill="#FFD3E8"/>
+            <circle cx="54" cy="-18" r="16" fill="#FFA8D2"/><circle cx="54" cy="-18" r="8" fill="#FFD3E8"/>
+            <g>
+              <ellipse cx="-20" cy="4" rx="11" ry="13" fill="#FFFFFF"/>
+              <ellipse cx="-20" cy="5" rx="8" ry="10" fill="#7B4BC9"/>
+              <circle cx="-23" cy="1" r="3" fill="#FFFFFF"/>
+              <ellipse cx="20" cy="4" rx="11" ry="13" fill="#FFFFFF"/>
+              <ellipse cx="20" cy="5" rx="8" ry="10" fill="#7B4BC9"/>
+              <circle cx="17" cy="1" r="3" fill="#FFFFFF"/>
+            </g>
+            <g stroke="#B05A8E" stroke-width="2.5" stroke-linecap="round">
+              <line x1="-31" y1="-12" x2="-12" y2="-14"/><line x1="31" y1="-12" x2="12" y2="-14"/>
+            </g>
+            <ellipse cx="-34" cy="26" rx="9" ry="6" fill="#FF9CC0" opacity=".65"/>
+            <ellipse cx="34" cy="26" rx="9" ry="6" fill="#FF9CC0" opacity=".65"/>
+            <path d="M-8,26 q8,10 16,0" stroke="#C4644E" stroke-width="3" fill="none" stroke-linecap="round"/>
+          </g>
+          <g id="faceChew" opacity="0">
+            <ellipse cx="0" cy="8" rx="60" ry="54" fill="url(#gSkin)"/>
+            <path d="M-60,0 q4,-52 60,-52 q56,0 60,52 q-24,-20 -60,-16 q-36,-4 -60,16z" fill="#FF9ED0"/>
+            <path d="M-60,-2 q10,-26 30,-34 q-8,20 0,30 q-16,0 -30,4z" fill="#FF7FBB"/>
+            <path d="M60,-2 q-10,-26 -30,-34 q8,20 0,30 q16,0 30,4z" fill="#FF7FBB"/>
+            <circle cx="-58" cy="-18" r="16" fill="#FFA8D2"/><circle cx="-58" cy="-18" r="8" fill="#FFD3E8"/>
+            <circle cx="58" cy="-18" r="16" fill="#FFA8D2"/><circle cx="58" cy="-18" r="8" fill="#FFD3E8"/>
+            <!-- puffed cheeks -->
+            <ellipse cx="-32" cy="16" rx="17" ry="14" fill="#FFD9C2"/>
+            <ellipse cx="32" cy="16" rx="17" ry="14" fill="#FFD9C2"/>
+            <g stroke="#8A4E6E" stroke-width="3.5" fill="none" stroke-linecap="round">
+              <path d="M-30,2 q10,8 20,0"/><path d="M10,2 q10,8 20,0"/>
+            </g>
+            <g stroke="#B05A8E" stroke-width="2.5" stroke-linecap="round">
+              <line x1="-31" y1="-12" x2="-13" y2="-16"/><line x1="31" y1="-12" x2="13" y2="-16"/>
+            </g>
+            <ellipse cx="0" cy="34" rx="10" ry="8" fill="#C4644E"/>
+            <ellipse cx="0" cy="34" rx="5" ry="4" fill="#E8907C"/>
+            <g fill="#C98A3A">
+              <circle cx="-14" cy="44" r="2.5"/><circle cx="2" cy="48" r="2"/><circle cx="14" cy="42" r="2.5"/>
+            </g>
+          </g>
+          <g id="faceScared" opacity="0">
+            <ellipse cx="0" cy="8" rx="54" ry="58" fill="url(#gSkin)"/>
+            <path d="M-56,0 q4,-52 56,-52 q52,0 56,52 q-24,-20 -56,-16 q-32,-4 -56,16z" fill="#FF9ED0"/>
+            <path d="M-56,-2 q10,-26 30,-34 q-8,20 0,30 q-16,0 -30,4z" fill="#FF7FBB"/>
+            <path d="M56,-2 q-10,-26 -30,-34 q8,20 0,30 q16,0 30,4z" fill="#FF7FBB"/>
+            <circle cx="-54" cy="-18" r="16" fill="#FFA8D2"/><circle cx="-54" cy="-18" r="8" fill="#FFD3E8"/>
+            <circle cx="54" cy="-18" r="16" fill="#FFA8D2"/><circle cx="54" cy="-18" r="8" fill="#FFD3E8"/>
+            <g>
+              <ellipse cx="-20" cy="2" rx="13" ry="15" fill="#FFFFFF" stroke="#B05A8E" stroke-width="2"/>
+              <circle cx="-20" cy="2" r="5" fill="#3B2A4A"/>
+              <ellipse cx="20" cy="2" rx="13" ry="15" fill="#FFFFFF" stroke="#B05A8E" stroke-width="2"/>
+              <circle cx="20" cy="2" r="5" fill="#3B2A4A"/>
+            </g>
+            <ellipse cx="0" cy="36" rx="13" ry="15" fill="#8A3B32"/>
+            <ellipse cx="0" cy="40" rx="7" ry="7" fill="#D2735C"/>
+            <path d="M52,-36 q14,10 8,22 q-12,-2 -8,-22z" fill="#8ED8F2"/>
+          </g>
+        </g>
+        <!-- ring -->
+        <circle r="88" fill="none" stroke="#F5B93A" stroke-width="7"/>
+        <circle r="82" fill="none" stroke="#FFE07A" stroke-width="3" opacity=".8"/>
+        <!-- chew ring -->
+        <g transform="rotate(-90)">
+          <circle id="chewBg" r="94" fill="none" stroke="#FFFFFF" stroke-opacity=".45" stroke-width="10" opacity="0"/>
+          <circle id="chewArc" r="94" fill="none" stroke="#FF5C9E" stroke-width="10" stroke-linecap="round"
+                  stroke-dasharray="590.6" stroke-dashoffset="590.6" opacity="0"/>
+        </g>
+        <g id="mouthBadge" opacity="0">
+          <rect x="-34" y="66" width="68" height="26" rx="13" fill="#FF5C9E" stroke="#FFFFFF" stroke-width="3"/>
+          <text id="mouthBadgeText" x="0" y="84" text-anchor="middle" font-size="16" font-weight="900" fill="#FFF">×3</text>
+        </g>
+      </g>
+
+      <!-- flash overlays -->
+      <rect id="flashWarn" x="0" y="0" width="800" height="600" fill="#FF3B5C" opacity="0" pointer-events="none"/>
+      <rect id="flashCatch" x="0" y="0" width="800" height="600" fill="#FF1B3C" opacity="0" pointer-events="none"/>
+    </svg>
+
+    <div id="hint" class="hint">탭해서 시작</div>
+  </div>
+
+  <div class="statusbar">
+    <span id="hideChip" class="chip chip-bad">👀 노출</span>
+    <span id="mouthChip" class="chip">🍪 입 비었음</span>
+    <span id="warnChip" class="chip">경고 0/3</span>
+  </div>
+
+  <footer class="pad">
+    <div class="pad-row">
+      <button id="btnLeft" class="pad-btn" aria-label="왼쪽으로 이동"><span class="arrow">◀</span></button>
+      <button id="btnDuck" class="pad-btn duck" aria-label="엎드리기">
+        <span class="arrow">▼</span><span class="pad-label">엎드리기</span>
+      </button>
+      <button id="btnRight" class="pad-btn" aria-label="오른쪽으로 이동"><span class="arrow">▶</span></button>
+    </div>
+    <button id="btnEat" class="eat-btn">
+      <span class="eat-ico">🍪</span>
+      <span class="eat-label">맛동산 먹기</span>
+      <span id="eatCount" class="eat-count">15</span>
+    </button>
+  </footer>
+</div>
+
+<div id="overlay" class="overlay" aria-live="polite"></div>
+
+<script src="game.js"></script>
+</body>
+</html>
