@@ -689,28 +689,32 @@
       <ellipse cx="19" cy="14" rx="5" ry="3" fill="#FFB8A0" opacity=".8"/>
     </g>
     <!-- sue -->
-    <g transform="translate(104,84)">
-      <ellipse cx="0" cy="62" rx="48" ry="24" fill="#9B7BD4"/>
-      <path d="M-24,46 q24,-10 48,0 l4,18 q-28,10 -56,0z" fill="#A98BE0"/>
-      <path d="M0,46 q-12,3 -16,10 l16,12 l16,-12 q-4,-7 -16,-10z" fill="#FFFFFF"/>
-      <path d="M-6,58 q6,5 12,0 q-2,7 -6,8 q-4,-1 -6,-8z" fill="#FFD34E"/>
-      <circle cx="0" cy="4" r="34" fill="#FFDFC4"/>
-      <path d="M-35,4 q0,-36 35,-36 q35,0 35,36 q-10,-20 -35,-16 q-25,-4 -35,16z" fill="#FF8CC4"/>
-      <path d="M-30,-6 q10,-20 30,-20 q20,0 30,20 q-14,-8 -30,-8 q-16,0 -30,8z" fill="#FFB0D8" opacity=".8"/>
-      <circle cx="-32" cy="-12" r="14" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2"/>
-      <circle cx="32" cy="-12" r="14" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2"/>
-      <circle cx="-32" cy="-12" r="7" fill="#FFD3E8"/><circle cx="32" cy="-12" r="7" fill="#FFD3E8"/>
+    <g transform="translate(104,80)">
+      <ellipse cx="0" cy="66" rx="50" ry="24" fill="#9B7BD4"/>
+      <path d="M-25,50 q25,-10 50,0 l4,18 q-29,10 -58,0z" fill="#A98BE0"/>
+      <path d="M0,50 q-13,3 -17,11 l17,13 l17,-13 q-4,-8 -17,-11z" fill="#FFFFFF"/>
+      <path d="M-7,63 q7,6 14,0 q-2,8 -7,9 q-5,-1 -7,-9z" fill="#FFD34E"/>
+      <!-- side buns behind -->
+      <circle cx="-31" cy="-12" r="14" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2.4"/>
+      <circle cx="31" cy="-12" r="14" fill="#FFA8D2" stroke="#E86BA4" stroke-width="2.4"/>
+      <circle cx="-31" cy="-12" r="6.5" fill="#FFD3E8"/>
+      <circle cx="31" cy="-12" r="6.5" fill="#FFD3E8"/>
+      <!-- face -->
+      <circle cx="0" cy="5" r="32" fill="#FFDFC4"/>
+      <!-- hair cap -->
+      <path d="M-32,5 q0,-34 32,-34 q32,0 32,34 q-11,-19 -32,-15 q-21,-4 -32,15z" fill="#FF8CC4"/>
+      <path d="M-26,-6 q9,-17 26,-17 q17,0 26,17 q-13,-8 -26,-8 q-13,0 -26,8z" fill="#FFB0D8" opacity=".85"/>
       <g>
-        <ellipse cx="-12" cy="4" rx="6" ry="7" fill="#FFF"/>
-        <ellipse cx="-12" cy="4" rx="4.4" ry="5.6" fill="#7B4BC9"/>
-        <circle cx="-13.5" cy="1" r="1.8" fill="#FFF"/>
-        <ellipse cx="12" cy="4" rx="6" ry="7" fill="#FFF"/>
-        <ellipse cx="12" cy="4" rx="4.4" ry="5.6" fill="#7B4BC9"/>
-        <circle cx="10.5" cy="1" r="1.8" fill="#FFF"/>
+        <ellipse cx="-11" cy="8" rx="6.4" ry="7.6" fill="#FFF"/>
+        <ellipse cx="-11" cy="8" rx="4.6" ry="5.8" fill="#7B4BC9"/>
+        <circle cx="-12.5" cy="4.5" r="1.9" fill="#FFF"/>
+        <ellipse cx="11" cy="8" rx="6.4" ry="7.6" fill="#FFF"/>
+        <ellipse cx="11" cy="8" rx="4.6" ry="5.8" fill="#7B4BC9"/>
+        <circle cx="9.5" cy="4.5" r="1.9" fill="#FFF"/>
       </g>
-      <path d="M-7,18 q7,9 14,0" stroke="#C4644E" stroke-width="2.6" fill="none" stroke-linecap="round"/>
-      <ellipse cx="-20" cy="12" rx="6" ry="3.5" fill="#FF9CC0" opacity=".7"/>
-      <ellipse cx="20" cy="12" rx="6" ry="3.5" fill="#FF9CC0" opacity=".7"/>
+      <path d="M-7,21 q7,8 14,0" stroke="#C4644E" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+      <ellipse cx="-19" cy="15" rx="6" ry="3.5" fill="#FF9CC0" opacity=".7"/>
+      <ellipse cx="19" cy="15" rx="6" ry="3.5" fill="#FF9CC0" opacity=".7"/>
       <!-- bag -->
       <g transform="translate(46,34)">
         <path d="M-16,4 q-4,26 4,32 q14,6 28,0 q8,-6 4,-32z" fill="#F6C46A" stroke="#B57A22" stroke-width="2"/>
