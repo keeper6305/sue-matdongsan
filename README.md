@@ -6,6 +6,9 @@
 ## 플레이
 https://keeper6305.github.io/sue-matdongsan/
 
+> GitHub Pages가 **`gh-pages` 브랜치**를 바라보고 있습니다. 수정 후 배포는 `sh ship.sh`
+> (main과 gh-pages를 함께 밀어 올립니다).
+
 ## 조작
 - `◀` `▶` : 좌우 이동 (길게 누르면 연속 이동)
 - `▼ 엎드리기` : 누르고 있는 동안 엎드림 (설정에서 토글 모드 선택 가능)
@@ -17,3 +20,9 @@ https://keeper6305.github.io/sue-matdongsan/
 2. 많이 넣을수록 씹는 시간이 길어진다 (1개 1.0초 → 4개 약 7초).
 3. 선생님이 돌아보면 앞자리 친구 뒤로 숨는다. **씹고 있으면 즉시 게임오버**, 숨지 못하면 경고 +1.
 4. 경고 3장이면 퇴장. 50초(10:00→10:50) 안에 15개를 다 먹으면 클리어.
+
+## 구조
+- `index.html` — 화면·SVG 교실 일러스트
+- `styles.css` — 모바일 레이아웃/컨트롤 패드/오버레이
+- `game.js` — 게임 규칙·상태머신·Web Audio 효과음
+- `verify_live.py`, `ship.sh`, `deploy.sh` — 배포·검증 스크립트

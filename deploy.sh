@@ -19,7 +19,7 @@ else
 fi
 git push -u origin main
 
-echo "== 3) GitHub Pages 활성화 (main / root)"
+echo "== 3) GitHub Pages는 gh-pages 브랜치에서 자동 게시됨"
 gh api -X POST "/repos/$REPO/pages" \
   -f "source[branch]=main" -f "source[path]=/" >/dev/null 2>&1 || \
 gh api -X PUT "/repos/$REPO/pages" \
