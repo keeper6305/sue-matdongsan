@@ -239,6 +239,7 @@
     }
     if (hidden) {
       // 앞자리 친구 뒤에 잘 숨었다
+      setCaption('휴우… 안 들켰다', 1.1);
       return;
     }
     G.warnings++;
